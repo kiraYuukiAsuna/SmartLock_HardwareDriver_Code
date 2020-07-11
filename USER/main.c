@@ -173,8 +173,10 @@ int main(void)
 #endif
 				OLED_Refresh();
 				beepOneSecOn();
-				//open 继电器模块通电 TODO
-
+				
+				relay_on();//继电器开启
+				delay_ms(2000);
+				relay_off();
 			}
 			else if(strstr(URecv, "mode0state:ok") != NULL)
 			{
@@ -250,6 +252,9 @@ int main(void)
 							if(!status)//process card
 							{
 								u8 cardIDChar[9], sendBuff[16];
+								memset(cardIDChar,0,sizeof(cardIDChar));
+								memset(sendBuff,0,sizeof(sendBuff));
+								
 								HexToStr(cardIDChar, 9, SelectedSnr, 4);
 
 								if(modeFlag == 0)
@@ -275,7 +280,7 @@ int main(void)
 								{
 									sendBuff[0] = '1'; //模式标识符
 									sendBuff[1] = 'D'; //默认卡
-									sendBuff[1] = 0;
+									sendBuff[2] = 0;
 									strcat((char*)sendBuff, (char*)cardIDChar);
 									USART1_Send_Data((char*)sendBuff, strlen((char*)sendBuff));
 									delay_ms(100);
@@ -314,7 +319,8 @@ void RC522_System_Init(void)
 	ESP8266_Init();
 	ws2812bInit();
 	buttonInit(key1_GPIO_CLK, key1_GPIO_PORT, key1_pin);
-
+	relay_init();
+	
 	LED_OFF;
 	delay_10ms(10);
 	PcdReset();

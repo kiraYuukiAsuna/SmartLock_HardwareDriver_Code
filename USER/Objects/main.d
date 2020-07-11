@@ -32,3 +32,4 @@
 .\objects\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
 .\objects\main.o: ..\Hardware\servo\servo.h
 .\objects\main.o: ..\Hardware\button\button.h
+.\objects\main.o: ..\Hardware\relay\relay.h

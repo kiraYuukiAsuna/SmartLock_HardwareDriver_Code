@@ -339,7 +339,7 @@
               <MiscControls></MiscControls>
               <Define>USE_STDPERIPH_DRIVER,STM32F10X_MD</Define>
               <Undefine></Undefine>
-              <IncludePath>..\Libraries\CMSIS\CM3\DeviceSupport\ST\STM32F10x\startup\arm;..\Libraries\CMSIS\CM3\CoreSupport;..\Libraries\CMSIS\CM3\DeviceSupport\ST\STM32F10x;..\Libraries\STM32F10x_StdPeriph_Driver\inc;..\Libraries\STM32F10x_StdPeriph_Driver\src;..\USER;..\Hardware\Beep;..\Hardware\button;..\Hardware\delay;..\Hardware\ESP8622;..\Hardware\LED;..\Hardware\MFRC522;..\Hardware\OLED;..\Hardware\sys;..\Hardware\usart;..\Hardware\WS2812;..\Hardware\servo;..\Hardware\commonfunction;..\Hardware\rand</IncludePath>
+              <IncludePath>..\Libraries\CMSIS\CM3\DeviceSupport\ST\STM32F10x\startup\arm;..\Libraries\CMSIS\CM3\CoreSupport;..\Libraries\CMSIS\CM3\DeviceSupport\ST\STM32F10x;..\Libraries\STM32F10x_StdPeriph_Driver\inc;..\Libraries\STM32F10x_StdPeriph_Driver\src;..\USER;..\Hardware\Beep;..\Hardware\button;..\Hardware\delay;..\Hardware\ESP8622;..\Hardware\LED;..\Hardware\MFRC522;..\Hardware\OLED;..\Hardware\sys;..\Hardware\usart;..\Hardware\WS2812;..\Hardware\servo;..\Hardware\commonfunction;..\Hardware\rand;..\Hardware\relay</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -622,6 +622,11 @@
               <FileName>button.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Hardware\button\button.c</FilePath>
+            </File>
+            <File>
+              <FileName>relay.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Hardware\relay\relay.c</FilePath>
             </File>
           </Files>
         </Group>

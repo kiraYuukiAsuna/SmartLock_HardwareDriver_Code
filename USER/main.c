@@ -37,22 +37,21 @@ int main(void)
 	OLED_ShowString(0, 32, "Powered by WRL", 16, 1);
 	OLED_ShowString(0, 48, "Version:0.01", 16, 1);
 	OLED_Refresh();
-	ws2812bSetAll(YELLOW);
+	rainbowCycle(1);
 	beepOneSecOn();
 
 	if(Key_Scan(GPIOB, GPIO_Pin_12) == KEY_ON)//通电开机如果按键被按下则进入注册卡号模式
 	{
 		modeFlag = 1;
 	}
-	
+
 	/*Discarded:
 	TIM3_PWM_Init();//50Hz  1/50*1000=20ms
 	TIM_SetCompare2(TIM3,6);
 	*/
-	
+
 	//rainbow(30);
-	//delay_ms(10);
-	//rainbowCycle(10);
+
 
 	//WIFI Connect
 	char * ok = "OK";
@@ -137,6 +136,8 @@ int main(void)
 
 	genRandCode(securityCode);
 
+	ws2812bSetAll(YELLOW);
+
 	beepOneSecOn();
 
 	if(modeFlag == 0)
@@ -163,6 +164,7 @@ int main(void)
 		if(URecv_Index) {
 			if(strstr(URecv, "mode1state:ok") != NULL)
 			{
+				ws2812bSetAll(GREEN);
 				OLED_Clear();
 				OLED_ShowString(0, 0, "Verify OK", 16, 0);
 				OLED_ShowString(0, 16, "Opening Now!", 16, 1);
@@ -173,13 +175,14 @@ int main(void)
 #endif
 				OLED_Refresh();
 				beepOneSecOn();
-				
+
 				relay_on();//继电器开启
-				delay_ms(2000);
+				delay_10ms(120);
 				relay_off();
 			}
 			else if(strstr(URecv, "mode0state:ok") != NULL)
 			{
+				ws2812bSetAll(GREEN);
 				OLED_Clear();
 				OLED_ShowString(0, 0, "Registing OK", 16, 0);
 				OLED_ShowString(0, 16, "Successfully!", 16, 1);
@@ -191,8 +194,62 @@ int main(void)
 				OLED_Refresh();
 				beepOneSecOn();
 			}
+			else if(URecv[0] == 'C')
+			{
+				u8 codeFlag = 1, i;
+				for(i = 0; i < 6; i++)
+				{
+#if DEBUG_MODE==1			
+					OLED_Clear();
+					OLED_ShowChar(0, 0, URecv[2 + i], 16, 0);
+					OLED_ShowChar(0, 16, securityCode[i], 16, 1);
+					OLED_Refresh();
+					delay_10ms(100);
+#endif				
+					if(URecv[2 + i] != securityCode[i])
+					{
+						codeFlag = 0;
+						break;
+					}
+				}
+
+				if(codeFlag == 1)
+				{
+					ws2812bSetAll(GREEN);
+					OLED_Clear();
+					OLED_ShowString(0, 0, "Verify OK", 16, 0);
+					OLED_ShowString(0, 16, "Opening Now!", 16, 1);
+#if DEBUG_MODE==1
+					OLED_ShowString(0, 32, "Server Return:", 16, 1);
+					OLED_ShowString(0, 48, (u8*)URecv, 16, 1);
+
+#endif
+					OLED_Refresh();
+					beepOneSecOn();
+					relay_on();//继电器开启
+					delay_10ms(200);
+					relay_off();
+				}
+				else if(codeFlag == 0)
+				{
+					ws2812bSetAll(RED);
+					OLED_Clear();
+					OLED_ShowString(0, 0, "Failed!", 16, 0);
+					OLED_ShowString(0, 16, "Code is wrong!", 16, 1);
+#if DEBUG_MODE==1
+					OLED_ShowString(0, 32, "Server Return:", 16, 1);
+					OLED_ShowString(0, 48, (u8*)URecv, 16, 1);
+
+#endif
+					OLED_Refresh();
+					beepOneSecOn();
+					delay_ms(200);
+					beepOneSecOn();
+				}
+			}
 			else
 			{
+				ws2812bSetAll(RED);
 				OLED_Clear();
 				OLED_ShowString(0, 0, "Failed!", 16, 0);
 				OLED_ShowString(0, 16, "Unknow Error!", 16, 1);
@@ -207,7 +264,7 @@ int main(void)
 				beepOneSecOn();
 			}
 
-
+			ws2812bSetAll(YELLOW);
 			if(modeFlag == 0)
 			{
 				genRandCode(securityCode);
@@ -252,9 +309,9 @@ int main(void)
 							if(!status)//process card
 							{
 								u8 cardIDChar[9], sendBuff[16];
-								memset(cardIDChar,0,sizeof(cardIDChar));
-								memset(sendBuff,0,sizeof(sendBuff));
-								
+								memset(cardIDChar, 0, sizeof(cardIDChar));
+								memset(sendBuff, 0, sizeof(sendBuff));
+
 								HexToStr(cardIDChar, 9, SelectedSnr, 4);
 
 								if(modeFlag == 0)
@@ -320,7 +377,7 @@ void RC522_System_Init(void)
 	ws2812bInit();
 	buttonInit(key1_GPIO_CLK, key1_GPIO_PORT, key1_pin);
 	relay_init();
-	
+
 	LED_OFF;
 	delay_10ms(10);
 	PcdReset();

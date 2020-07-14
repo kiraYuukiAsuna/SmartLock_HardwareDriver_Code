@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-extern char URecv[256];
+extern char URecv[128];
 extern u16 URecv_Index;
 
 void ESP8266_Init(void);

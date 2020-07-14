@@ -1,6 +1,6 @@
 #include "esp8266.h"
 
-char URecv[256] = {0x0};
+char URecv[128] = {0x0};
 u16 URecv_Index = 0;
 
 void Uart1_Init(u32 baud)
@@ -64,7 +64,7 @@ void USART1_IRQHandler(void)
 	u8 clear = clear;
 	if(USART_GetITStatus(USART1, USART_IT_RXNE) != RESET) {
 		URecv[URecv_Index++] = USART1->DR;
-		if(URecv_Index == 256) {
+		if(URecv_Index == 128) {
 			URecv_Index = 0;
 		}
 	}

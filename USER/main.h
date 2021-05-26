@@ -31,3 +31,14 @@
 #include "button.h"
 
 #include "relay.h"
+
+//QREncode
+#include "qrencode.h"
+#include "qrspec.h"
+#include "mqrspec.h"
+#include "bitstream.h"
+#include "qrinput.h"
+#include "rsecc.h"
+#include "split.h"
+#include "mask.h"
+#include "mmask.h"

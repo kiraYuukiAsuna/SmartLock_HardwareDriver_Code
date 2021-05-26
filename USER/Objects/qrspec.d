@@ -1,0 +1,10 @@
+.\objects\qrspec.o: ..\AdditionalLib\libqrencode-4.1.1\qrspec.c
+.\objects\qrspec.o: ..\AdditionalLib\libqrencode-4.1.1\config.h
+.\objects\qrspec.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\qrspec.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+.\objects\qrspec.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+.\objects\qrspec.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\errno.h
+.\objects\qrspec.o: ..\AdditionalLib\libqrencode-4.1.1\qrspec.h
+.\objects\qrspec.o: ..\AdditionalLib\libqrencode-4.1.1\qrencode.h
+.\objects\qrspec.o: ..\AdditionalLib\libqrencode-4.1.1\qrinput.h
+.\objects\qrspec.o: ..\AdditionalLib\libqrencode-4.1.1\bitstream.h

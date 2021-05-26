@@ -33,3 +33,12 @@
 .\objects\main.o: ..\Hardware\servo\servo.h
 .\objects\main.o: ..\Hardware\button\button.h
 .\objects\main.o: ..\Hardware\relay\relay.h
+.\objects\main.o: ..\AdditionalLib\libqrencode-4.1.1\qrencode.h
+.\objects\main.o: ..\AdditionalLib\libqrencode-4.1.1\qrspec.h
+.\objects\main.o: ..\AdditionalLib\libqrencode-4.1.1\mqrspec.h
+.\objects\main.o: ..\AdditionalLib\libqrencode-4.1.1\bitstream.h
+.\objects\main.o: ..\AdditionalLib\libqrencode-4.1.1\qrinput.h
+.\objects\main.o: ..\AdditionalLib\libqrencode-4.1.1\rsecc.h
+.\objects\main.o: ..\AdditionalLib\libqrencode-4.1.1\split.h
+.\objects\main.o: ..\AdditionalLib\libqrencode-4.1.1\mask.h
+.\objects\main.o: ..\AdditionalLib\libqrencode-4.1.1\mmask.h

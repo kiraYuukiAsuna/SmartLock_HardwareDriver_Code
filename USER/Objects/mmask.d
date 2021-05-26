@@ -1,0 +1,9 @@
+.\objects\mmask.o: ..\AdditionalLib\libqrencode-4.1.1\mmask.c
+.\objects\mmask.o: ..\AdditionalLib\libqrencode-4.1.1\config.h
+.\objects\mmask.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+.\objects\mmask.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+.\objects\mmask.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\limits.h
+.\objects\mmask.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\errno.h
+.\objects\mmask.o: ..\AdditionalLib\libqrencode-4.1.1\qrencode.h
+.\objects\mmask.o: ..\AdditionalLib\libqrencode-4.1.1\mqrspec.h
+.\objects\mmask.o: ..\AdditionalLib\libqrencode-4.1.1\mmask.h

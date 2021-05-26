@@ -83,7 +83,7 @@ void ESP8266_Init()
 {
 	delay_init();
 
-	Uart1_Init(9600);
+	Uart1_Init(115200);
 }
 
 char ESP8266_Send_Answer(char *cmd, char * answer)

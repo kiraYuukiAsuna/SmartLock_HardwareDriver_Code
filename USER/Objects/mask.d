@@ -1,9 +1,0 @@
-.\objects\mask.o: ..\AdditionalLib\libqrencode-4.1.1\mask.c
-.\objects\mask.o: ..\AdditionalLib\libqrencode-4.1.1\config.h
-.\objects\mask.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
-.\objects\mask.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
-.\objects\mask.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\limits.h
-.\objects\mask.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\errno.h
-.\objects\mask.o: ..\AdditionalLib\libqrencode-4.1.1\qrencode.h
-.\objects\mask.o: ..\AdditionalLib\libqrencode-4.1.1\qrspec.h
-.\objects\mask.o: ..\AdditionalLib\libqrencode-4.1.1\mask.h

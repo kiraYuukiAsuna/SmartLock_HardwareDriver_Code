@@ -123,6 +123,7 @@ Section Cross References
     main.o(i.main) refers to strlen.o(.text) for strlen
     main.o(i.main) refers to main.o(i.genRandCode) for genRandCode
     main.o(i.main) refers to ws2812.o(i.ws2812bSetAll) for ws2812bSetAll
+    main.o(i.main) refers to main.o(i.writeQRCodeBuffer) for writeQRCodeBuffer
     main.o(i.main) refers to strstr.o(.text) for strstr
     main.o(i.main) refers to relay.o(i.relay_on) for relay_on
     main.o(i.main) refers to rc522.o(i.delay_10ms) for delay_10ms
@@ -140,10 +141,8 @@ Section Cross References
     main.o(i.main) refers to stm32f10x_gpio.o(i.GPIO_SetBits) for GPIO_SetBits
     main.o(i.main) refers to rc522.o(i.WaitCardOff) for WaitCardOff
     main.o(i.main) refers to stm32f10x_gpio.o(i.GPIO_ResetBits) for GPIO_ResetBits
-    main.o(i.showQRCode) refers to oled.o(i.OLED_Clear) for OLED_Clear
-    main.o(i.showQRCode) refers to oled.o(i.OLED_DrawPoint) for OLED_DrawPoint
-    main.o(i.showQRCode) refers to oled.o(i.OLED_Refresh) for OLED_Refresh
-    main.o(i.showQRCode) refers to main.o(.data) for qrcode
+    main.o(i.writeQRCodeBuffer) refers to oled.o(i.OLED_DrawPoint) for OLED_DrawPoint
+    main.o(i.writeQRCodeBuffer) refers to main.o(.data) for qrcode
     beep.o(i.beepInit) refers to delay.o(i.delay_init) for delay_init
     beep.o(i.beepInit) refers to stm32f10x_rcc.o(i.RCC_APB2PeriphClockCmd) for RCC_APB2PeriphClockCmd
     beep.o(i.beepInit) refers to stm32f10x_gpio.o(i.GPIO_Init) for GPIO_Init
@@ -1393,7 +1392,6 @@ Removing Unused input sections from the image.
     Removing stm32f10x_wwdg.o(i.WWDG_SetCounter), (16 bytes).
     Removing stm32f10x_wwdg.o(i.WWDG_SetPrescaler), (24 bytes).
     Removing stm32f10x_wwdg.o(i.WWDG_SetWindowValue), (40 bytes).
-    Removing main.o(i.showQRCode), (368 bytes).
     Removing main.o(.bss), (94 bytes).
     Removing beep.o(i.beepOff), (10 bytes).
     Removing beep.o(i.beepOn), (10 bytes).
@@ -1464,7 +1462,7 @@ Removing Unused input sections from the image.
     Removing qrinput.o(i.QRinput_splitEntry), (72 bytes).
     Removing qrinput.o(i.QRinput_splitQRinputToStruct), (424 bytes).
 
-500 unused section(s) (total 21222 bytes) removed from the image.
+499 unused section(s) (total 20854 bytes) removed from the image.
 
 ==============================================================================
 
@@ -1474,98 +1472,98 @@ Image Symbol Table
 
     Symbol Name                              Value     Ov Type        Size  Object(Section)
 
+    ../clib/angel/boardlib.s                 0x00000000   Number         0  boardinit3.o ABSOLUTE
     ../clib/angel/boardlib.s                 0x00000000   Number         0  boardinit2.o ABSOLUTE
     ../clib/angel/boardlib.s                 0x00000000   Number         0  boardinit1.o ABSOLUTE
-    ../clib/angel/boardlib.s                 0x00000000   Number         0  boardinit3.o ABSOLUTE
     ../clib/angel/boardlib.s                 0x00000000   Number         0  boardshut.o ABSOLUTE
     ../clib/angel/dclz77c.s                  0x00000000   Number         0  __dclz77c.o ABSOLUTE
     ../clib/angel/handlers.s                 0x00000000   Number         0  __scatter_zi.o ABSOLUTE
-    ../clib/angel/kernel.s                   0x00000000   Number         0  __rtentry.o ABSOLUTE
-    ../clib/angel/kernel.s                   0x00000000   Number         0  __rtentry2.o ABSOLUTE
-    ../clib/angel/kernel.s                   0x00000000   Number         0  rtexit.o ABSOLUTE
     ../clib/angel/kernel.s                   0x00000000   Number         0  __rtentry4.o ABSOLUTE
+    ../clib/angel/kernel.s                   0x00000000   Number         0  rtexit.o ABSOLUTE
+    ../clib/angel/kernel.s                   0x00000000   Number         0  __rtentry.o ABSOLUTE
     ../clib/angel/kernel.s                   0x00000000   Number         0  rtexit2.o ABSOLUTE
-    ../clib/angel/rt.s                       0x00000000   Number         0  rt_errno_addr_intlibspace.o ABSOLUTE
+    ../clib/angel/kernel.s                   0x00000000   Number         0  __rtentry2.o ABSOLUTE
     ../clib/angel/rt.s                       0x00000000   Number         0  rt_raise.o ABSOLUTE
-    ../clib/angel/rt.s                       0x00000000   Number         0  rt_errno_addr.o ABSOLUTE
     ../clib/angel/rt.s                       0x00000000   Number         0  rt_heap_descriptor_intlibspace.o ABSOLUTE
     ../clib/angel/rt.s                       0x00000000   Number         0  rt_heap_descriptor.o ABSOLUTE
+    ../clib/angel/rt.s                       0x00000000   Number         0  rt_errno_addr_intlibspace.o ABSOLUTE
+    ../clib/angel/rt.s                       0x00000000   Number         0  rt_errno_addr.o ABSOLUTE
     ../clib/angel/scatter.s                  0x00000000   Number         0  __scatter.o ABSOLUTE
     ../clib/angel/startup.s                  0x00000000   Number         0  __main.o ABSOLUTE
-    ../clib/angel/sys.s                      0x00000000   Number         0  sys_stackheap_outer.o ABSOLUTE
-    ../clib/angel/sys.s                      0x00000000   Number         0  use_no_semi.o ABSOLUTE
-    ../clib/angel/sys.s                      0x00000000   Number         0  mutex_dummy.o ABSOLUTE
     ../clib/angel/sys.s                      0x00000000   Number         0  indicate_semi.o ABSOLUTE
+    ../clib/angel/sys.s                      0x00000000   Number         0  use_no_semi.o ABSOLUTE
+    ../clib/angel/sys.s                      0x00000000   Number         0  sys_stackheap_outer.o ABSOLUTE
     ../clib/angel/sys.s                      0x00000000   Number         0  libspace.o ABSOLUTE
-    ../clib/angel/sysapp.c                   0x00000000   Number         0  sys_command.o ABSOLUTE
+    ../clib/angel/sys.s                      0x00000000   Number         0  mutex_dummy.o ABSOLUTE
     ../clib/angel/sysapp.c                   0x00000000   Number         0  sys_exit.o ABSOLUTE
     ../clib/angel/sysapp.c                   0x00000000   Number         0  sys_wrch.o ABSOLUTE
+    ../clib/angel/sysapp.c                   0x00000000   Number         0  sys_command.o ABSOLUTE
     ../clib/armsys.c                         0x00000000   Number         0  _get_argv_nomalloc.o ABSOLUTE
-    ../clib/armsys.c                         0x00000000   Number         0  no_argv.o ABSOLUTE
+    ../clib/armsys.c                         0x00000000   Number         0  argv_veneer.o ABSOLUTE
+    ../clib/armsys.c                         0x00000000   Number         0  argv_veneer.o ABSOLUTE
     ../clib/armsys.c                         0x00000000   Number         0  _get_argv.o ABSOLUTE
-    ../clib/armsys.c                         0x00000000   Number         0  argv_veneer.o ABSOLUTE
-    ../clib/armsys.c                         0x00000000   Number         0  argv_veneer.o ABSOLUTE
-    ../clib/heap1.c                          0x00000000   Number         0  h1_alloc.o ABSOLUTE
-    ../clib/heap1.c                          0x00000000   Number         0  h1_free.o ABSOLUTE
-    ../clib/heap1.c                          0x00000000   Number         0  h1_realloc.o ABSOLUTE
-    ../clib/heap1.c                          0x00000000   Number         0  h1_alloc_mt.o ABSOLUTE
-    ../clib/heap1.c                          0x00000000   Number         0  h1_free_mt.o ABSOLUTE
-    ../clib/heap1.c                          0x00000000   Number         0  h1_realloc_mt.o ABSOLUTE
-    ../clib/heap1.c                          0x00000000   Number         0  h1_final.o ABSOLUTE
-    ../clib/heap1.c                          0x00000000   Number         0  h1_final_mt.o ABSOLUTE
-    ../clib/heap1.c                          0x00000000   Number         0  h1_init.o ABSOLUTE
+    ../clib/armsys.c                         0x00000000   Number         0  no_argv.o ABSOLUTE
     ../clib/heap1.c                          0x00000000   Number         0  h1_init_mt.o ABSOLUTE
+    ../clib/heap1.c                          0x00000000   Number         0  h1_realloc_mt.o ABSOLUTE
+    ../clib/heap1.c                          0x00000000   Number         0  h1_free_mt.o ABSOLUTE
+    ../clib/heap1.c                          0x00000000   Number         0  h1_alloc_mt.o ABSOLUTE
     ../clib/heap1.c                          0x00000000   Number         0  h1_extend.o ABSOLUTE
+    ../clib/heap1.c                          0x00000000   Number         0  h1_free.o ABSOLUTE
+    ../clib/heap1.c                          0x00000000   Number         0  h1_alloc.o ABSOLUTE
+    ../clib/heap1.c                          0x00000000   Number         0  h1_final.o ABSOLUTE
+    ../clib/heap1.c                          0x00000000   Number         0  h1_init.o ABSOLUTE
+    ../clib/heap1.c                          0x00000000   Number         0  h1_final_mt.o ABSOLUTE
     ../clib/heap1.c                          0x00000000   Number         0  h1_extend_mt.o ABSOLUTE
+    ../clib/heap1.c                          0x00000000   Number         0  h1_realloc.o ABSOLUTE
+    ../clib/heap2.c                          0x00000000   Number         0  heap2mt.o ABSOLUTE
     ../clib/heap2.c                          0x00000000   Number         0  heap2.o ABSOLUTE
     ../clib/heap2.c                          0x00000000   Number         0  fdtree.o ABSOLUTE
-    ../clib/heap2.c                          0x00000000   Number         0  heap2mt.o ABSOLUTE
-    ../clib/heapalloc.c                      0x00000000   Number         0  init_alloc.o ABSOLUTE
     ../clib/heapalloc.c                      0x00000000   Number         0  hguard.o ABSOLUTE
+    ../clib/heapalloc.c                      0x00000000   Number         0  maybetermalloc1.o ABSOLUTE
+    ../clib/heapalloc.c                      0x00000000   Number         0  maybetermalloc2.o ABSOLUTE
+    ../clib/heapalloc.c                      0x00000000   Number         0  term_alloc.o ABSOLUTE
+    ../clib/heapalloc.c                      0x00000000   Number         0  maybetermalloc1.o ABSOLUTE
     ../clib/heapalloc.c                      0x00000000   Number         0  calloc.o ABSOLUTE
+    ../clib/heapalloc.c                      0x00000000   Number         0  hrguard.o ABSOLUTE
     ../clib/heapalloc.c                      0x00000000   Number         0  realloc.o ABSOLUTE
     ../clib/heapalloc.c                      0x00000000   Number         0  free.o ABSOLUTE
-    ../clib/heapalloc.c                      0x00000000   Number         0  malloc.o ABSOLUTE
-    ../clib/heapalloc.c                      0x00000000   Number         0  maybetermalloc1.o ABSOLUTE
-    ../clib/heapalloc.c                      0x00000000   Number         0  term_alloc.o ABSOLUTE
     ../clib/heapalloc.c                      0x00000000   Number         0  heapstubs.o ABSOLUTE
-    ../clib/heapalloc.c                      0x00000000   Number         0  maybetermalloc1.o ABSOLUTE
+    ../clib/heapalloc.c                      0x00000000   Number         0  init_alloc.o ABSOLUTE
     ../clib/heapalloc.c                      0x00000000   Number         0  maybetermalloc2.o ABSOLUTE
-    ../clib/heapalloc.c                      0x00000000   Number         0  hrguard.o ABSOLUTE
-    ../clib/heapalloc.c                      0x00000000   Number         0  maybetermalloc2.o ABSOLUTE
-    ../clib/heapaux.c                        0x00000000   Number         0  heapauxa.o ABSOLUTE
+    ../clib/heapalloc.c                      0x00000000   Number         0  malloc.o ABSOLUTE
     ../clib/heapaux.c                        0x00000000   Number         0  heapauxi.o ABSOLUTE
-    ../clib/libinit.s                        0x00000000   Number         0  libshutdown2.o ABSOLUTE
-    ../clib/libinit.s                        0x00000000   Number         0  libshutdown.o ABSOLUTE
+    ../clib/heapaux.c                        0x00000000   Number         0  heapauxa.o ABSOLUTE
     ../clib/libinit.s                        0x00000000   Number         0  libinit.o ABSOLUTE
+    ../clib/libinit.s                        0x00000000   Number         0  libshutdown2.o ABSOLUTE
     ../clib/libinit.s                        0x00000000   Number         0  libinit2.o ABSOLUTE
-    ../clib/memcpset.s                       0x00000000   Number         0  rt_memclr.o ABSOLUTE
-    ../clib/memcpset.s                       0x00000000   Number         0  aeabi_memset.o ABSOLUTE
-    ../clib/memcpset.s                       0x00000000   Number         0  rt_memcpy_w.o ABSOLUTE
+    ../clib/libinit.s                        0x00000000   Number         0  libshutdown.o ABSOLUTE
     ../clib/memcpset.s                       0x00000000   Number         0  rt_memclr_w.o ABSOLUTE
     ../clib/memcpset.s                       0x00000000   Number         0  rt_memcpy_v6.o ABSOLUTE
     ../clib/memcpset.s                       0x00000000   Number         0  rt_memmove_v6.o ABSOLUTE
     ../clib/memcpset.s                       0x00000000   Number         0  memcpy.o ABSOLUTE
+    ../clib/memcpset.s                       0x00000000   Number         0  rt_memclr.o ABSOLUTE
     ../clib/memcpset.s                       0x00000000   Number         0  rt_memmove_w.o ABSOLUTE
-    ../clib/signal.c                         0x00000000   Number         0  defsig_rtmem_inner.o ABSOLUTE
-    ../clib/signal.c                         0x00000000   Number         0  defsig_rtred_inner.o ABSOLUTE
-    ../clib/signal.c                         0x00000000   Number         0  defsig_exit.o ABSOLUTE
-    ../clib/signal.c                         0x00000000   Number         0  defsig_general.o ABSOLUTE
+    ../clib/memcpset.s                       0x00000000   Number         0  aeabi_memset.o ABSOLUTE
+    ../clib/memcpset.s                       0x00000000   Number         0  rt_memcpy_w.o ABSOLUTE
     ../clib/signal.c                         0x00000000   Number         0  defsig_rtmem_formal.o ABSOLUTE
     ../clib/signal.c                         0x00000000   Number         0  defsig_cppl_inner.o ABSOLUTE
-    ../clib/signal.c                         0x00000000   Number         0  defsig_fpe_inner.o ABSOLUTE
-    ../clib/signal.c                         0x00000000   Number         0  defsig_pvfn_inner.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  defsig_general.o ABSOLUTE
     ../clib/signal.c                         0x00000000   Number         0  __raise.o ABSOLUTE
-    ../clib/signal.c                         0x00000000   Number         0  defsig_other.o ABSOLUTE
-    ../clib/signal.c                         0x00000000   Number         0  defsig_rtmem_outer.o ABSOLUTE
-    ../clib/signal.c                         0x00000000   Number         0  defsig_segv_inner.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  defsig_rtmem_inner.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  defsig_exit.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  defsig_fpe_inner.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  defsig_rtred_inner.o ABSOLUTE
     ../clib/signal.c                         0x00000000   Number         0  defsig_stak_inner.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  defsig_pvfn_inner.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  defsig_segv_inner.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  defsig_rtmem_outer.o ABSOLUTE
     ../clib/signal.c                         0x00000000   Number         0  defsig_abrt_inner.o ABSOLUTE
+    ../clib/signal.c                         0x00000000   Number         0  defsig_other.o ABSOLUTE
     ../clib/signal.s                         0x00000000   Number         0  defsig.o ABSOLUTE
     ../clib/stdlib.c                         0x00000000   Number         0  exit.o ABSOLUTE
+    ../clib/string.c                         0x00000000   Number         0  strcat.o ABSOLUTE
     ../clib/string.c                         0x00000000   Number         0  strstr.o ABSOLUTE
     ../clib/string.c                         0x00000000   Number         0  strlen.o ABSOLUTE
-    ../clib/string.c                         0x00000000   Number         0  strcat.o ABSOLUTE
     ../fplib/fpinit.s                        0x00000000   Number         0  fpinit.o ABSOLUTE
     ..\AdditionalLib\libqrencode-4.1.1\bitstream.c 0x00000000   Number         0  bitstream.o ABSOLUTE
     ..\AdditionalLib\libqrencode-4.1.1\mask.c 0x00000000   Number         0  mask.o ABSOLUTE
@@ -1996,40 +1994,41 @@ Image Symbol Table
     i.getRND                                 0x080057e8   Section        0  rand.o(i.getRND)
     i.initRND                                0x08005860   Section        0  rand.o(i.initRND)
     i.main                                   0x080058fc   Section        0  main.o(i.main)
-    i.putFinderPattern                       0x080062a8   Section        0  mqrspec.o(i.putFinderPattern)
-    putFinderPattern                         0x080062a9   Thumb Code    42  mqrspec.o(i.putFinderPattern)
-    i.putFinderPattern                       0x080062d8   Section        0  qrspec.o(i.putFinderPattern)
-    putFinderPattern                         0x080062d9   Thumb Code    42  qrspec.o(i.putFinderPattern)
-    i.rainbowCycle                           0x08006308   Section        0  ws2812.o(i.rainbowCycle)
-    i.relay_init                             0x08006350   Section        0  relay.o(i.relay_init)
-    i.relay_off                              0x0800637c   Section        0  relay.o(i.relay_off)
-    i.relay_on                               0x0800638c   Section        0  relay.o(i.relay_on)
-    i.setvalue                               0x0800639c   Section        0  ws2812.o(i.setvalue)
-    i.strdup                                 0x080063be   Section        0  split.o(i.strdup)
-    i.ws2812bClearAll                        0x080063e4   Section        0  ws2812.o(i.ws2812bClearAll)
-    i.ws2812bInit                            0x08006420   Section        0  ws2812.o(i.ws2812bInit)
-    i.ws2812bSend                            0x0800654c   Section        0  ws2812.o(i.ws2812bSend)
-    ws2812bSend                              0x0800654d   Thumb Code    38  ws2812.o(i.ws2812bSend)
-    i.ws2812bSet                             0x0800657c   Section        0  ws2812.o(i.ws2812bSet)
-    i.ws2812bSetAll                          0x0800661c   Section        0  ws2812.o(i.ws2812bSetAll)
-    .constdata                               0x0800662a   Section     7696  oled.o(.constdata)
-    .constdata                               0x0800843c   Section       32  esp8266.o(.constdata)
-    .constdata                               0x0800845c   Section      401  mqrspec.o(.constdata)
-    mqrspecCapacity                          0x0800845c   Data         100  mqrspec.o(.constdata)
-    lengthTableBits                          0x080084c0   Data          64  mqrspec.o(.constdata)
-    formatInfo                               0x08008500   Data         128  mqrspec.o(.constdata)
-    typeTable                                0x08008580   Data          60  mqrspec.o(.constdata)
-    finder                                   0x080085bc   Data          49  mqrspec.o(.constdata)
-    .constdata                               0x080085ed   Section      128  qrinput.o(.constdata)
-    .constdata                               0x08008670   Section     3174  qrspec.o(.constdata)
-    qrspecCapacity                           0x08008670   Data        1148  qrspec.o(.constdata)
-    lengthTableBits                          0x08008aec   Data          48  qrspec.o(.constdata)
-    eccTable                                 0x08008b1c   Data        1312  qrspec.o(.constdata)
-    alignmentPattern                         0x0800903c   Data         328  qrspec.o(.constdata)
-    versionPattern                           0x08009184   Data         136  qrspec.o(.constdata)
-    formatInfo                               0x0800920c   Data         128  qrspec.o(.constdata)
-    finder                                   0x0800928c   Data          25  qrspec.o(.constdata)
-    finder                                   0x080092a5   Data          49  qrspec.o(.constdata)
+    i.putFinderPattern                       0x080062a4   Section        0  mqrspec.o(i.putFinderPattern)
+    putFinderPattern                         0x080062a5   Thumb Code    42  mqrspec.o(i.putFinderPattern)
+    i.putFinderPattern                       0x080062d4   Section        0  qrspec.o(i.putFinderPattern)
+    putFinderPattern                         0x080062d5   Thumb Code    42  qrspec.o(i.putFinderPattern)
+    i.rainbowCycle                           0x08006304   Section        0  ws2812.o(i.rainbowCycle)
+    i.relay_init                             0x0800634c   Section        0  relay.o(i.relay_init)
+    i.relay_off                              0x08006378   Section        0  relay.o(i.relay_off)
+    i.relay_on                               0x08006388   Section        0  relay.o(i.relay_on)
+    i.setvalue                               0x08006398   Section        0  ws2812.o(i.setvalue)
+    i.strdup                                 0x080063ba   Section        0  split.o(i.strdup)
+    i.writeQRCodeBuffer                      0x080063e0   Section        0  main.o(i.writeQRCodeBuffer)
+    i.ws2812bClearAll                        0x08006548   Section        0  ws2812.o(i.ws2812bClearAll)
+    i.ws2812bInit                            0x08006584   Section        0  ws2812.o(i.ws2812bInit)
+    i.ws2812bSend                            0x080066b0   Section        0  ws2812.o(i.ws2812bSend)
+    ws2812bSend                              0x080066b1   Thumb Code    38  ws2812.o(i.ws2812bSend)
+    i.ws2812bSet                             0x080066e0   Section        0  ws2812.o(i.ws2812bSet)
+    i.ws2812bSetAll                          0x08006780   Section        0  ws2812.o(i.ws2812bSetAll)
+    .constdata                               0x0800678e   Section     7696  oled.o(.constdata)
+    .constdata                               0x080085a0   Section       32  esp8266.o(.constdata)
+    .constdata                               0x080085c0   Section      401  mqrspec.o(.constdata)
+    mqrspecCapacity                          0x080085c0   Data         100  mqrspec.o(.constdata)
+    lengthTableBits                          0x08008624   Data          64  mqrspec.o(.constdata)
+    formatInfo                               0x08008664   Data         128  mqrspec.o(.constdata)
+    typeTable                                0x080086e4   Data          60  mqrspec.o(.constdata)
+    finder                                   0x08008720   Data          49  mqrspec.o(.constdata)
+    .constdata                               0x08008751   Section      128  qrinput.o(.constdata)
+    .constdata                               0x080087d4   Section     3174  qrspec.o(.constdata)
+    qrspecCapacity                           0x080087d4   Data        1148  qrspec.o(.constdata)
+    lengthTableBits                          0x08008c50   Data          48  qrspec.o(.constdata)
+    eccTable                                 0x08008c80   Data        1312  qrspec.o(.constdata)
+    alignmentPattern                         0x080091a0   Data         328  qrspec.o(.constdata)
+    versionPattern                           0x080092e8   Data         136  qrspec.o(.constdata)
+    formatInfo                               0x08009370   Data         128  qrspec.o(.constdata)
+    finder                                   0x080093f0   Data          25  qrspec.o(.constdata)
+    finder                                   0x08009409   Data          49  qrspec.o(.constdata)
     .data                                    0x20000000   Section       20  system_stm32f10x.o(.data)
     .data                                    0x20000014   Section       20  stm32f10x_rcc.o(.data)
     APBAHBPrescTable                         0x20000014   Data          16  stm32f10x_rcc.o(.data)
@@ -2438,28 +2437,29 @@ Image Symbol Table
     genRandCode                              0x08005689   Thumb Code   190  main.o(i.genRandCode)
     getRND                                   0x080057e9   Thumb Code   112  rand.o(i.getRND)
     initRND                                  0x08005861   Thumb Code   142  rand.o(i.initRND)
-    main                                     0x080058fd   Thumb Code  2308  main.o(i.main)
-    rainbowCycle                             0x08006309   Thumb Code    70  ws2812.o(i.rainbowCycle)
-    relay_init                               0x08006351   Thumb Code    38  relay.o(i.relay_init)
-    relay_off                                0x0800637d   Thumb Code    12  relay.o(i.relay_off)
-    relay_on                                 0x0800638d   Thumb Code    12  relay.o(i.relay_on)
-    setvalue                                 0x0800639d   Thumb Code    34  ws2812.o(i.setvalue)
-    strdup                                   0x080063bf   Thumb Code    38  split.o(i.strdup)
-    ws2812bClearAll                          0x080063e5   Thumb Code    56  ws2812.o(i.ws2812bClearAll)
-    ws2812bInit                              0x08006421   Thumb Code   252  ws2812.o(i.ws2812bInit)
-    ws2812bSet                               0x0800657d   Thumb Code   154  ws2812.o(i.ws2812bSet)
-    ws2812bSetAll                            0x0800661d   Thumb Code    14  ws2812.o(i.ws2812bSetAll)
-    asc2_0806                                0x0800662a   Data         552  oled.o(.constdata)
-    asc2_1206                                0x08006852   Data        1140  oled.o(.constdata)
-    asc2_1608                                0x08006cc6   Data        1520  oled.o(.constdata)
-    asc2_2412                                0x080072b6   Data        3420  oled.o(.constdata)
-    Hzk1                                     0x08008012   Data         352  oled.o(.constdata)
-    Hzk2                                     0x08008172   Data          72  oled.o(.constdata)
-    Hzk3                                     0x080081ba   Data         128  oled.o(.constdata)
-    Hzk4                                     0x0800823a   Data         512  oled.o(.constdata)
-    QRinput_anTable                          0x080085ed   Data         128  qrinput.o(.constdata)
-    Region$$Table$$Base                      0x080092d8   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x080092f8   Number         0  anon$$obj.o(Region$$Table)
+    main                                     0x080058fd   Thumb Code  2302  main.o(i.main)
+    rainbowCycle                             0x08006305   Thumb Code    70  ws2812.o(i.rainbowCycle)
+    relay_init                               0x0800634d   Thumb Code    38  relay.o(i.relay_init)
+    relay_off                                0x08006379   Thumb Code    12  relay.o(i.relay_off)
+    relay_on                                 0x08006389   Thumb Code    12  relay.o(i.relay_on)
+    setvalue                                 0x08006399   Thumb Code    34  ws2812.o(i.setvalue)
+    strdup                                   0x080063bb   Thumb Code    38  split.o(i.strdup)
+    writeQRCodeBuffer                        0x080063e1   Thumb Code   354  main.o(i.writeQRCodeBuffer)
+    ws2812bClearAll                          0x08006549   Thumb Code    56  ws2812.o(i.ws2812bClearAll)
+    ws2812bInit                              0x08006585   Thumb Code   252  ws2812.o(i.ws2812bInit)
+    ws2812bSet                               0x080066e1   Thumb Code   154  ws2812.o(i.ws2812bSet)
+    ws2812bSetAll                            0x08006781   Thumb Code    14  ws2812.o(i.ws2812bSetAll)
+    asc2_0806                                0x0800678e   Data         552  oled.o(.constdata)
+    asc2_1206                                0x080069b6   Data        1140  oled.o(.constdata)
+    asc2_1608                                0x08006e2a   Data        1520  oled.o(.constdata)
+    asc2_2412                                0x0800741a   Data        3420  oled.o(.constdata)
+    Hzk1                                     0x08008176   Data         352  oled.o(.constdata)
+    Hzk2                                     0x080082d6   Data          72  oled.o(.constdata)
+    Hzk3                                     0x0800831e   Data         128  oled.o(.constdata)
+    Hzk4                                     0x0800839e   Data         512  oled.o(.constdata)
+    QRinput_anTable                          0x08008751   Data         128  qrinput.o(.constdata)
+    Region$$Table$$Base                      0x0800943c   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x0800945c   Number         0  anon$$obj.o(Region$$Table)
     SystemCoreClock                          0x20000000   Data           4  system_stm32f10x.o(.data)
     AHBPrescTable                            0x20000004   Data          16  system_stm32f10x.o(.data)
     BMP1                                     0x20000028   Data        1024  main.o(.data)
@@ -2492,9 +2492,9 @@ Memory Map of the image
 
   Image Entry point : 0x080001d9
 
-  Load Region LR_1 (Base: 0x08000000, Size: 0x00009bac, Max: 0xffffffff, ABSOLUTE, COMPRESSED[0x00009534])
+  Load Region LR_1 (Base: 0x08000000, Size: 0x00009d10, Max: 0xffffffff, ABSOLUTE, COMPRESSED[0x00009698])
 
-    Execution Region ER_RO (Exec base: 0x08000000, Load base: 0x08000000, Size: 0x000092f8, Max: 0xffffffff, ABSOLUTE)
+    Execution Region ER_RO (Exec base: 0x08000000, Load base: 0x08000000, Size: 0x0000945c, Max: 0xffffffff, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
@@ -2826,33 +2826,34 @@ Memory Map of the image
     0x0800574c   0x0800574c   0x0000009c   Code   RO         4870    i.generator_init    rsecc.o
     0x080057e8   0x080057e8   0x00000078   Code   RO         3852    i.getRND            rand.o
     0x08005860   0x08005860   0x0000009c   Code   RO         3853    i.initRND           rand.o
-    0x080058fc   0x080058fc   0x000009ac   Code   RO         3173    i.main              main.o
-    0x080062a8   0x080062a8   0x00000030   Code   RO         4140    i.putFinderPattern  mqrspec.o
-    0x080062d8   0x080062d8   0x00000030   Code   RO         4787    i.putFinderPattern  qrspec.o
-    0x08006308   0x08006308   0x00000046   Code   RO         3725    i.rainbowCycle      ws2812.o
-    0x0800634e   0x0800634e   0x00000002   PAD
-    0x08006350   0x08006350   0x0000002c   Code   RO         3890    i.relay_init        relay.o
-    0x0800637c   0x0800637c   0x00000010   Code   RO         3891    i.relay_off         relay.o
-    0x0800638c   0x0800638c   0x00000010   Code   RO         3892    i.relay_on          relay.o
-    0x0800639c   0x0800639c   0x00000022   Code   RO         3726    i.setvalue          ws2812.o
-    0x080063be   0x080063be   0x00000026   Code   RO         4905    i.strdup            split.o
-    0x080063e4   0x080063e4   0x0000003c   Code   RO         3728    i.ws2812bClearAll   ws2812.o
-    0x08006420   0x08006420   0x0000012c   Code   RO         3729    i.ws2812bInit       ws2812.o
-    0x0800654c   0x0800654c   0x00000030   Code   RO         3730    i.ws2812bSend       ws2812.o
-    0x0800657c   0x0800657c   0x000000a0   Code   RO         3731    i.ws2812bSet        ws2812.o
-    0x0800661c   0x0800661c   0x0000000e   Code   RO         3732    i.ws2812bSetAll     ws2812.o
-    0x0800662a   0x0800662a   0x00001e10   Data   RO         3544    .constdata          oled.o
-    0x0800843a   0x0800843a   0x00000002   PAD
-    0x0800843c   0x0800843c   0x00000020   Data   RO         3680    .constdata          esp8266.o
-    0x0800845c   0x0800845c   0x00000191   Data   RO         4141    .constdata          mqrspec.o
-    0x080085ed   0x080085ed   0x00000080   Data   RO         4472    .constdata          qrinput.o
-    0x0800866d   0x0800866d   0x00000003   PAD
-    0x08008670   0x08008670   0x00000c66   Data   RO         4788    .constdata          qrspec.o
-    0x080092d6   0x080092d6   0x00000002   PAD
-    0x080092d8   0x080092d8   0x00000020   Data   RO         5262    Region$$Table       anon$$obj.o
+    0x080058fc   0x080058fc   0x000009a8   Code   RO         3173    i.main              main.o
+    0x080062a4   0x080062a4   0x00000030   Code   RO         4140    i.putFinderPattern  mqrspec.o
+    0x080062d4   0x080062d4   0x00000030   Code   RO         4787    i.putFinderPattern  qrspec.o
+    0x08006304   0x08006304   0x00000046   Code   RO         3725    i.rainbowCycle      ws2812.o
+    0x0800634a   0x0800634a   0x00000002   PAD
+    0x0800634c   0x0800634c   0x0000002c   Code   RO         3890    i.relay_init        relay.o
+    0x08006378   0x08006378   0x00000010   Code   RO         3891    i.relay_off         relay.o
+    0x08006388   0x08006388   0x00000010   Code   RO         3892    i.relay_on          relay.o
+    0x08006398   0x08006398   0x00000022   Code   RO         3726    i.setvalue          ws2812.o
+    0x080063ba   0x080063ba   0x00000026   Code   RO         4905    i.strdup            split.o
+    0x080063e0   0x080063e0   0x00000168   Code   RO         3174    i.writeQRCodeBuffer  main.o
+    0x08006548   0x08006548   0x0000003c   Code   RO         3728    i.ws2812bClearAll   ws2812.o
+    0x08006584   0x08006584   0x0000012c   Code   RO         3729    i.ws2812bInit       ws2812.o
+    0x080066b0   0x080066b0   0x00000030   Code   RO         3730    i.ws2812bSend       ws2812.o
+    0x080066e0   0x080066e0   0x000000a0   Code   RO         3731    i.ws2812bSet        ws2812.o
+    0x08006780   0x08006780   0x0000000e   Code   RO         3732    i.ws2812bSetAll     ws2812.o
+    0x0800678e   0x0800678e   0x00001e10   Data   RO         3544    .constdata          oled.o
+    0x0800859e   0x0800859e   0x00000002   PAD
+    0x080085a0   0x080085a0   0x00000020   Data   RO         3680    .constdata          esp8266.o
+    0x080085c0   0x080085c0   0x00000191   Data   RO         4141    .constdata          mqrspec.o
+    0x08008751   0x08008751   0x00000080   Data   RO         4472    .constdata          qrinput.o
+    0x080087d1   0x080087d1   0x00000003   PAD
+    0x080087d4   0x080087d4   0x00000c66   Data   RO         4788    .constdata          qrspec.o
+    0x0800943a   0x0800943a   0x00000002   PAD
+    0x0800943c   0x0800943c   0x00000020   Data   RO         5262    Region$$Table       anon$$obj.o
 
 
-    Execution Region ER_RW (Exec base: 0x20000000, Load base: 0x080092f8, Size: 0x000008b4, Max: 0xffffffff, ABSOLUTE, COMPRESSED[0x0000023c])
+    Execution Region ER_RW (Exec base: 0x20000000, Load base: 0x0800945c, Size: 0x000008b4, Max: 0xffffffff, ABSOLUTE, COMPRESSED[0x0000023c])
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
@@ -2869,7 +2870,7 @@ Memory Map of the image
     0x200008b0   COMPRESSED   0x00000004   Data   RW         4872    .data               rsecc.o
 
 
-    Execution Region ER_ZI (Exec base: 0x200008b4, Load base: 0x08009534, Size: 0x00003d1c, Max: 0xffffffff, ABSOLUTE)
+    Execution Region ER_ZI (Exec base: 0x200008b4, Load base: 0x08009698, Size: 0x00003d1c, Max: 0xffffffff, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
@@ -2896,7 +2897,7 @@ Image component sizes
          0          0          0          0          0       4508   core_cm3.o
        144         22          0          4          0       1160   delay.o
        456         38         32          2        128       3741   esp8266.o
-      2824        702          0       2116          0       8327   main.o
+      3180        692          0       2116          0       8919   main.o
       1642          8          0         32          0      13874   mask.o
        152         12          0          0          0       1646   misc.o
        692         12          0         16          0       7112   mmask.o
@@ -2922,7 +2923,7 @@ Image component sizes
        872         76          0         10        540       6483   ws2812.o
 
     ----------------------------------------------------------------------
-     23990       1508      11706       2228      15548     474726   Object Totals
+     24346       1498      11706       2228      15548     475318   Object Totals
          0          0         32          0          0          0   (incl. Generated)
         26          0          7          3          0          0   (incl. Padding)
 
@@ -2998,15 +2999,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-     25918       1590      11706       2228      15644     463286   Grand Totals
-     25918       1590      11706        572      15644     463286   ELF Image Totals (compressed)
-     25918       1590      11706        572          0          0   ROM Totals
+     26274       1580      11706       2228      15644     463826   Grand Totals
+     26274       1580      11706        572      15644     463826   ELF Image Totals (compressed)
+     26274       1580      11706        572          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                37624 (  36.74kB)
+    Total RO  Size (Code + RO Data)                37980 (  37.09kB)
     Total RW  Size (RW Data + ZI Data)             17872 (  17.45kB)
-    Total ROM Size (Code + RO Data + RW Data)      38196 (  37.30kB)
+    Total ROM Size (Code + RO Data + RW Data)      38552 (  37.65kB)
 
 ==============================================================================
 

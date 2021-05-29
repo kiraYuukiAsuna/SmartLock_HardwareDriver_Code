@@ -10,6 +10,7 @@
 //函数声明
 void RC522_System_Init(void);
 void genRandCode(u8* Des);
+void writeQRCodeBuffer();
 //全局变量
 unsigned char card1[5] = { 0x20, 0x25, 0x35, 0x55, 0x3F }; //卡序列号
 unsigned char card2[4] = { 0xDE, 0x8A, 0xDF, 0x2B }; //卡序列号
@@ -58,7 +59,7 @@ int main(void)
     char* at_cifsr = "AT+CIFSR\r\n";
     char* at_cipmux = "AT+CIPMUX=0\r\n";
     char* at_cipmode = "AT+CIPMODE=1\r\n";
-    char* at_cipstart = "AT+CIPSTART=\"TCP\",\"192.168.1.110\",1425\r\n";
+    char* at_cipstart = "AT+CIPSTART=\"TCP\",\"192.168.1.110\",25500\r\n";
     char* at_cipsend = "AT+CIPSEND\r\n";
 
     char* WIFI_SSID = "624"; //wifi名称
@@ -139,10 +140,11 @@ int main(void)
 
     if (modeFlag == 0) {
         OLED_Clear();
-        OLED_ShowString(0, 0, "Welcome!", 16, 0);
-        OLED_ShowString(0, 16, "Use Card/Code Unlock", 12, 1);
-        OLED_ShowString(0, 32, "Security Code:", 16, 1);
-        OLED_ShowString(0, 48, securityCode, 16, 1);
+				writeQRCodeBuffer();
+        OLED_ShowString(65, 0, "Welcome!", 16, 1);
+        OLED_ShowString(65, 16, "Security", 16, 1);
+				OLED_ShowString(65, 32, "Code:", 16, 1);
+        OLED_ShowString(65, 48, securityCode, 16, 1);
         OLED_Refresh();
     } else if (modeFlag == 1) {
         OLED_Clear();
@@ -248,12 +250,13 @@ int main(void)
             ws2812bSetAll(YELLOW);
             if (modeFlag == 0) {
                 genRandCode(securityCode);
-                OLED_Clear();
-                OLED_ShowString(0, 0, "Welcome!", 16, 0);
-                OLED_ShowString(0, 16, "Use Card/Code Unlock", 12, 1);
-                OLED_ShowString(0, 32, "Security Code:", 16, 1);
-                OLED_ShowString(0, 48, securityCode, 16, 1);
-                OLED_Refresh();
+								OLED_Clear();
+								writeQRCodeBuffer();
+								OLED_ShowString(65, 0, "Welcome!", 16, 1);
+								OLED_ShowString(65, 16, "Security", 16, 1);
+								OLED_ShowString(65, 32, "Code:", 16, 1);
+								OLED_ShowString(65, 48, securityCode, 16, 1);
+								OLED_Refresh();
             } else if (modeFlag == 1) {
                 OLED_Clear();
                 OLED_ShowString(0, 0, "Welcome!", 16, 0);
@@ -388,10 +391,9 @@ void genRandCode(u8* Des)
     qrcode = QRcode_encodeString((const char*)Des, 1, QR_ECLEVEL_L, QR_MODE_8, 0);
 }
 
-void showQRCode()
+void writeQRCodeBuffer()
 {
-    OLED_Clear();
-    int x, y, offsetx = 34;
+    int x, y, offsetx = 0;
     for (y = 0; y < qrcode->width * 3; y += 3) {
         for (x = 0; x < qrcode->width * 3; x += 3) {
             if (qrcode->data[y / 3 * qrcode->width + x / 3] & 0x01) {
@@ -419,5 +421,4 @@ void showQRCode()
             }
         }
     }
-    OLED_Refresh();
 }
